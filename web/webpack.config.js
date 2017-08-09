@@ -42,17 +42,21 @@ module.exports = {
     ],
 
     devServer: {
-        hot: true
+        hot: true,
+        historyApiFallback: {
+            index: 'index.html'
+        }
     },
 
     module: {
+
         loaders: [
             {
                 test: /\.js?$/,
                 loader: 'babel-loader',
                 // exclude: /node_modules/,
                 query: {
-                    presets: ['es2015', "stage-0", 'react'],
+                    presets: ['es2015', 'stage-0', 'react'],
                 }
             }
         ]
@@ -69,16 +73,17 @@ module.exports = {
     ],
 
     resolve: {
-        modules: [ 'app', 'node_modules' ],
+        modules: ['app', 'node_modules'],
 
         // Maps the 'react-native' import to 'react-native-web'.
         alias: {
-            'react-native': 'react-native-web'
+            'react-native': 'react-native-web',
+            'react-router-native': 'react-router-dom',
         },
         // If you're working on a multi-platform React Native app, web-specific
         // module implementations should be written in files using the extension
         // `.web.js`.
-        extensions: [ '.json', '.web.js', '.js', '.jsx' ]
+        extensions: ['.json', '.web.js', '.js', '.jsx']
     },
 
     output: {
@@ -86,4 +91,4 @@ module.exports = {
         // path: __dirname + '/dist',
         publicPath: '/'
     },
-}
+};

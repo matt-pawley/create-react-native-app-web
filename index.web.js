@@ -1,6 +1,6 @@
 // index.web.js
-import App from './App.js';
 import React from 'react';
+import App from './App.js';
 import ReactNative, { AppRegistry } from 'react-native';
 
 // Register the app
