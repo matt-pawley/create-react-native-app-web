@@ -36,12 +36,10 @@ const imageLoaderConfiguration = {
 
 module.exports = {
 
-    entry: {
-        main: [
-            'babel-polyfill',
-            './index.web.js'
-        ]
-    },
+    entry: [
+        'babel-polyfill',
+        './index.web.js'
+    ],
 
     devServer: {
         hot: true
@@ -50,9 +48,12 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loaders: ['babel-loader']
+                test: /\.js?$/,
+                loader: 'babel-loader',
+                // exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', "stage-0", 'react'],
+                }
             }
         ]
     },
@@ -63,11 +64,13 @@ module.exports = {
         // builds to eliminate development checks and reduce build size. You may
         // wish to include additional optimizations.
         new webpack.DefinePlugin({
-            // 'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': JSON.stringify('development')
         })
     ],
 
     resolve: {
+        modules: [ 'app', 'node_modules' ],
+
         // Maps the 'react-native' import to 'react-native-web'.
         alias: {
             'react-native': 'react-native-web'
@@ -75,7 +78,7 @@ module.exports = {
         // If you're working on a multi-platform React Native app, web-specific
         // module implementations should be written in files using the extension
         // `.web.js`.
-        extensions: [ '.web.js', '.js' ]
+        extensions: [ '.json', '.web.js', '.js', '.jsx' ]
     },
 
     output: {
